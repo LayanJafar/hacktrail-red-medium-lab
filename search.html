@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Trip - Haramain Booking</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="topbar">
+      <div class="brand">Haramain Express</div>
+      <div class="user-info" id="userInfo"></div>
+    </header>
+
+    <main class="card">
+      <h1>Book Your Trip</h1>
+      <p class="subtitle">Search for available routes and continue to booking review.</p>
+
+      <form id="searchForm">
+        <div class="form-grid">
+          <div>
+            <label for="from">From</label>
+            <select id="from" required>
+              <option value="Makkah">Makkah</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="to">To</label>
+            <select id="to" required>
+              <option value="Madinah">Madinah</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="tripDate">Travel Date</label>
+            <input type="date" id="tripDate" required />
+          </div>
+
+          <div>
+            <label for="seatClass">Seat Class</label>
+            <select id="seatClass" required>
+              <option value="Economy">Economy - 50 SAR</option>
+              <option value="Business">Business - 200 SAR</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="trip-preview">
+          <h2>Available Trip</h2>
+          <div class="trip-card">
+            <div>
+              <p><strong>Route:</strong> Makkah → Madinah</p>
+              <p><strong>Trip ID:</strong> 372617</p>
+              <p><strong>Departure:</strong> 10:30 AM</p>
+            </div>
+            <div>
+              <p><strong>Economy:</strong> 50 SAR</p>
+              <p><strong>Business:</strong> 200 SAR</p>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary">Continue</button>
+      </form>
+    </main>
+  </div>
+
+  <script>
+    const email = localStorage.getItem("user_email");
+    if (email) {
+      document.getElementById("userInfo").textContent = email;
+    }
+
+    const dateInput = document.getElementById("tripDate");
+    const today = new Date().toISOString().split("T")[0];
+    dateInput.value = today;
+    dateInput.min = today;
+
+    document.getElementById("searchForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const from = document.getElementById("from").value;
+      const to = document.getElementById("to").value;
+      const tripDate = document.getElementById("tripDate").value;
+      const seatClass = document.getElementById("seatClass").value;
+
+      let price = 50;
+      if (seatClass === "Business") {
+        price = 200;
+      }
+
+      const bookingData = {
+        trip_id: "372617",
+        from: from,
+        to: to,
+        trip_date: tripDate,
+        seat_class: seatClass,
+        price: price,
+        user_id: localStorage.getItem("user_id") || "1001"
+      };
+
+      localStorage.setItem("bookingData", JSON.stringify(bookingData));
+      window.location.href = "review.html";
+    });
+  </script>
+</body>
+</html>

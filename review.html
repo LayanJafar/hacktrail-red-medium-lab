@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Review Booking - Haramain Booking</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="topbar">
+      <div class="brand">Haramain Express</div>
+      <div class="user-info" id="userInfo"></div>
+    </header>
+
+    <main class="card review-card">
+      <h1>Review Your Booking</h1>
+      <p class="subtitle">Please review your booking details and click "Final Confirm" to proceed.</p>
+
+      <div class="summary-box">
+        <h2>Booking Summary</h2>
+
+        <div class="summary-row">
+          <span>Route</span>
+          <strong id="routeText">-</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Trip ID</span>
+          <strong id="tripIdText">-</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Seat Class</span>
+          <strong id="seatClassText">-</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Price</span>
+          <strong id="priceText">-</strong>
+        </div>
+
+        <button id="confirmBtn" class="btn-warning full-width">Final Confirm</button>
+      </div>
+
+      <p id="message" class="message"></p>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

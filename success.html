@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Success - Haramain Booking</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-center">
+    <div class="card success-card">
+      <div class="success-icon">✓</div>
+      <h1>Booking Confirmed</h1>
+      <p class="subtitle">Your reservation has been completed successfully.</p>
+
+      <div class="summary-row">
+        <span>Route</span>
+        <strong id="successRoute">-</strong>
+      </div>
+
+      <div class="summary-row">
+        <span>Seat Class</span>
+        <strong id="successClass">-</strong>
+      </div>
+
+      <div class="summary-row">
+        <span>Price Paid</span>
+        <strong id="successPrice">-</strong>
+      </div>
+
+      <div class="flag-box" id="flagBox" style="display: none;">
+        <h2>Lab Flag Captured</h2>
+        <p id="flagText"></p>
+      </div>
+
+      <a href="search.html" class="btn-primary link-btn">Book Another Trip</a>
+    </div>
+  </div>
+
+  <script>
+    const result = JSON.parse(localStorage.getItem("bookingResult"));
+
+    if (result) {
+      document.getElementById("successRoute").textContent = `${result.from} → ${result.to}`;
+      document.getElementById("successClass").textContent = result.seat_class;
+      document.getElementById("successPrice").textContent = `${result.price} SAR`;
+
+      if (result.flag) {
+        document.getElementById("flagBox").style.display = "block";
+        document.getElementById("flagText").textContent = result.flag;
+      }
+    }
+  </script>
+</body>
+</html>
