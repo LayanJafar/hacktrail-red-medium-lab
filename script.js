@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   confirmBtn.addEventListener("click", async function () {
     try {
-      const response = await fetch("http://localhost:3000/confirm-booking", {
+      const response = await fetch("/confirm-booking", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
